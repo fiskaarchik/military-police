@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Военная полиция РФ</title>
+<style>
+:root {
+  --green: #102b20;
+  --dark: #091811;
+  --gold: #c8a75b;
+  --light: #f1eee5;
+  --muted: #a9b6ad;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f1f3ef;
+  color: #202922;
+  font-family: Arial, sans-serif;
+}
+header {
+  background: var(--dark);
+  color: white;
+  border-bottom: 3px solid var(--gold);
+}
+.top {
+  padding: 25px 6%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.emblem {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: bold;
+}
+h1 { margin: 0 0 8px; font-size: 25px; }
+.subtitle { color: #c6d0c8; font-size: 13px; }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 5%;
+  background: var(--green);
+}
+nav button {
+  background: transparent;
+  border: 0;
+  color: white;
+  padding: 16px 13px;
+  cursor: pointer;
+}
+nav button:hover, nav button.active {
+  background: #244a36;
+  color: var(--gold);
+}
+.hero {
+  background: linear-gradient(110deg, #102b20, #1c4430);
+  color: white;
+  padding: 55px 7%;
+}
+.hero small { color: var(--gold); letter-spacing: 3px; }
+.hero h2 { font-size: clamp(30px, 5vw, 48px); margin: 15px 0; }
+.hero p { max-width: 650px; line-height: 1.7; color: #d5ded7; }
+.badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 9px 14px;
+  margin-top: 10px;
+}
+main { max-width: 1200px; margin: auto; padding: 30px 20px 60px; }
+section.page { display: none; }
+section.page.active { display: block; }
+.section-title {
+  border-left: 4px solid var(--gold);
+  padding-left: 14px;
+  margin: 15px 0 24px;
+  color: var(--green);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: white;
+  border: 1px solid #dce2dc;
+  border-top: 3px solid var(--gold);
+  padding: 22px;
+  border-radius: 3px;
+  box-shadow: 0 4px 14px #12251908;
+}
+.card h3 { color: var(--green); margin-top: 0; }
+.card p { color: #59645c; line-height: 1.6; }
+.meta { color: #8a7747; font-size: 12px; margin-bottom: 10px; }
+button, input, select, textarea { font: inherit; }
+.action {
+  background: var(--green);
+  color: white;
+  border: 0;
+  padding: 11px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.action:hover { background: #28513a; }
+.search {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccd5cc;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+.row input, .row select {
+  padding: 11px;
+  border: 1px solid #ccd5cc;
+  min-width: 180px;
+  flex: 1;
+}
+footer {
+  background: var(--dark);
+  color: #c6d0c8;
+  text-align: center;
+  padding: 25px;
+  border-top: 3px solid var(--gold);
+  font-size: 13px;
+}
+.notice {
+  background: #fff8e7;
+  border-left: 4px solid var(--gold);
+  padding: 14px;
+  line-height: 1.6;
+}
+.hidden { display: none !important; }
+@media(max-width:600px) {
+  .top { padding: 20px; }
+  h1 { font-size: 19px; }
+  nav button { padding: 12px 9px; }
+  .hero { padding: 35px 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <div class="emblem">ВП</div>
+    <div>
+      <h1>ВОЕННАЯ ПОЛИЦИЯ РФ</h1>
+      <div class="subtitle">ПОРЯДОК · ЗАКОННОСТЬ · ДИСЦИПЛИНА</div>
+    </div>
+  </div>
+  <nav id="navigation">
+    <button class="active" data-page="home">Главная</button>
+    <button data-page="law">Правовая база</button>
+    <button data-page="orders">Приказы</button>
+    <button data-page="news">Новости</button>
+    <button data-page="units">Структура</button>
+    <button data-page="admin">Администрирование</button>
+  </nav>
+</header>
+
+<div class="hero" id="hero">
+  <small>ЕДИНАЯ ИНФОРМАЦИОННАЯ СИСТЕМА</small>
+  <h2>Закон. Порядок. Служба.</h2>
+  <p>Информационный портал фракции Военной полиции. Документы, внутренние приказы, структура подразделений и актуальные объявления.</p>
+  <div class="badge">Командир фракции: Полковник Пёсиков</div>
+</div>
+
+<main>
+<section id="home" class="page active">
+  <h2 class="section-title">Главная страница</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>⚖ Правовая база</h3>
+      <p>Каталог нормативных актов и правовых документов.</p>
+      <button class="action" onclick="showPage('law')">Открыть</button>
+    </article>
+    <article class="card">
+      <h3>📜 Приказы</h3>
+      <p>Внутренние распоряжения и официальные объявления фракции.</p>
+      <button class="action" onclick="showPage('orders')">Открыть</button>
+    </article>
+    <article class="card">
+      <h3>🛡 Структура</h3>
+      <p>Руководство, подразделения и основные направления службы.</p>
+      <button class="action" onclick="showPage('units')">Открыть</button>
+    </article>
+    <article class="card">
+      <h3>📰 Новости</h3>
+      <p>Последние новости и события фракции.</p>
+      <button class="action" onclick="showPage('news')">Открыть</button>
+    </article>
+  </div>
+  <h2 class="section-title">Последние объявления</h2>
+  <div id="homeNews" class="grid"></div>
+</section>
+
+<section id="law" class="page">
+  <h2 class="section-title">Правовая база</h2>
+  <div class="notice">
+    Это портал для RP-фракции. Официальные нормативные акты РФ и игровые документы необходимо различать. Проверяйте действующую редакцию по официальным источникам.
+  </div>
+  <br>
+  <input class="search" id="lawSearch" placeholder="Поиск по названиям и текстам документов..." oninput="renderLaw()">
+  <div id="lawList" class="grid"></div>
+  <p><a href="https://pravo.gov.ru/" target="_blank">Официальный интернет-портал правовой информации</a></p>
+  <p><a href="https://publication.pravo.gov.ru/" target="_blank">Официальное опубликование правовых актов</a></p>
+</section>
+
+<section id="orders" class="page">
+  <h2 class="section-title">Приказы и распоряжения</h2>
+  <div id="ordersList" class="grid"></div>
+</section>
+
+<section id="news" class="page">
+  <h2 class="section-title">Новости фракции</h2>
+  <div id="newsList" class="grid"></div>
+</section>
+
+<section id="units" class="page">
+  <h2 class="section-title">Руководство и структура</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="meta">КОМАНДОВАНИЕ</div>
+      <h3>Полковник Пёсиков Евпатий Серафимович</h3>
+      <p>Командир Военной полиции — руководство подразделением и контроль исполнения приказов.</p>
+    </article>
+    <article class="card">
+      <h3>Штаб</h3>
+      <p>Планирование деятельности, кадровые вопросы, документация и координация подразделений.</p>
+    </article>
+    <article class="card">
+      <h3>Патрульная служба</h3>
+      <p>Патрулирование, обеспечение порядка и реагирование на происшествия в рамках RP-правил.</p>
+    </article>
+    <article class="card">
+      <h3>Отдел надзора</h3>
+      <p>Проверки соблюдения дисциплины и рассмотрение внутренних нарушений законадательства.</p>
+    </article>
+    <article class="card">
+      <h3>Кадровое подразделение</h3>
+      <p>Набор сотрудников, аттестации, учёт личного состава и продвижение по службе.</p>
+    </article>
+    <article class="card">
+      <h3>Учебный отдел</h3>
+      <p>Подготовка новобранцев, проведение занятий и проверка знания уставов.</p>
+    </article>
+  </div>
+</section>
+
+<section id="admin" class="page">
+  <h2 class="section-title">Панель администратора</h2>
+  <div class="notice">Демонстрационный режим: данные сохраняются в локальном хранилище этого браузера. Это не защищённая серверная авторизация.</div>
+  <br>
+  <div id="login">
+    <div class="row">
+      <input id="adminPassword" type="password" placeholder="Демонстрационный пароль">
+      <button class="action" onclick="login()">Войти</button>
+    </div>
+    <p class="meta">Для демонстрации пароль: admin123</p>
+  </div>
+  <div id="adminPanel" class="hidden">
+    <h3>Добавить новость или объявление</h3>
+    <div class="row">
+      <select id="itemType">
+        <option value="news">Новость</option>
+        <option value="order">Приказ / объявление</option>
+      </select>
+      <input id="itemTitle" placeholder="Заголовок">
+    </div>
+    <br>
+    <textarea id="itemText" class="search" rows="4" placeholder="Текст публикации"></textarea>
+    <button class="action" onclick="addItem()">Опубликовать</button>
+    <button class="action" onclick="logout()">Выйти</button>
+    <h3>Добавить документ в правовую базу</h3>
+    <div class="row">
+      <input id="lawTitle" placeholder="Название документа">
+      <input id="lawUrl" placeholder="Ссылка на источник (необязательно)">
+    </div>
+    <br>
+    <textarea id="lawText" class="search" rows="3" placeholder="Текст документа или описание"></textarea>
+    <button class="action" onclick="addLaw()">Добавить документ</button>
+    <h3>Удаление публикаций</h3>
+    <div id="manageList"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>ВОЕННАЯ ПОЛИЦИЯ РФ</strong><br><br>
+  RP-портал. Не является официальным сайтом государственных органов Российской Федерации.
+</footer>
+
+<script>
+const initialLaws = [
+  {title:"Конституция Российской Федерации", text:"Основной закон Российской Федерации. Проверьте актуальную редакцию.", url:"https://pravo.gov.ru/"},
+  {title:"Федеральный закон № 76-ФЗ «О статусе военнослужащих»", text:"Правовое положение, права, обязанности и ответственность военнослужащих.", url:"https://pravo.gov.ru/"},
+  {title:"Федеральный закон № 53-ФЗ «О воинской обязанности и военной службе»", text:"Основные положения о воинской обязанности и прохождении военной службы.", url:"https://pravo.gov.ru/"},
+  {title:"Устав военной полиции", text:"Проверяйте применимость и действующую редакцию официального документа.", url:"https://publication.pravo.gov.ru/"},
+  {title:"Общевоинские уставы Вооружённых Сил РФ", text:"Уставы внутренней службы, гарнизонной и караульной служб, строевой устав и дисциплинарный устав.", url:"https://pravo.gov.ru/"},
+  {title:"Уголовный кодекс Российской Федерации", text:"Уголовно-правовые нормы. Используйте официальный актуальный текст.", url:"https://pravo.gov.ru/"},
+  {title:"Кодекс Российской Федерации об административных правонарушениях", text:"Нормы об административных правонарушениях и ответственности.", url:"https://pravo.gov.ru/"},
+  {title:"Уголовно-процессуальный кодекс Российской Федерации", text:"Правовые нормы уголовного судопроизводства.", url:"https://pravo.gov.ru/"}
+];
+
+function load(key, fallback) {
+  try {
+    const data = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(data) ? data : fallback;
+  } catch { return fallback; }
+}
+let laws = load("vp_laws", initialLaws);
+let news = load("vp_news", [
+  {title:"Информационный портал открыт", text:"Добро пожаловать на портал фракции Военной полиции.", date:"17.10.2026"}
+]);
+let orders = load("vp_orders", [
+  {title:"Организационное объявление", text:"Сотрудникам рекомендуется ознакомиться с разделами правовой базы и внутренними документами.", date:"17.10.2026"}
+]);
+
+function save() {
+  localStorage.setItem("vp_laws", JSON.stringify(laws));
+  localStorage.setItem("vp_news", JSON.stringify(news));
+  localStorage.setItem("vp_orders", JSON.stringify(orders));
+}
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.toggle("active", b.dataset.page === id)
+  );
+  document.getElementById("hero").style.display = id === "home" ? "" : "none";
+  renderAll();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+// Avoid interpreting entered text as HTML.
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  }[c]));
+}
+function card(item, type, index) {
+  return `<article class="card">
+    <div class="meta">${safe(item.date || "ДОКУМЕНТ")}</div>
+    <h3>${safe(item.title)}</h3>
+    <p>${safe(item.text)}</p>
+    ${item.url ? `<p><a href="${safe(item.url)}" target="_blank" rel="noopener">Открыть источник ↗</a></p>` : ""}
+    ${document.getElementById("adminPanel") &&
+      !document.getElementById("adminPanel").classList.contains("hidden")
+      ? `<button class="action" onclick="removeItem('${type}',${index})">Удалить</button>` : ""}
+  </article>`;
+}
+function renderLaw() {
+  const q = (document.getElementById("lawSearch")?.value || "").toLowerCase();
+  const found = laws.filter(x => (x.title + " " + x.text).toLowerCase().includes(q));
+  document.getElementById("lawList").innerHTML = found.length
+    ? found.map(x => card(x, "law", laws.indexOf(x))).join("")
+    : "<p>Документы не найдены.</p>";
+}
+function renderAll() {
+  document.getElementById("newsList").innerHTML = news.map((x,i)=>card(x,"news",i)).join("");
+  document.getElementById("ordersList").innerHTML = orders.map((x,i)=>card(x,"order",i)).join("");
+  document.getElementById("homeNews").innerHTML = news.slice().reverse().slice(0,3).map(x=>card(x,"news",news.indexOf(x))).join("");
+  renderLaw();
+  const list = [
+    ...news.map((x,i)=>({...x,type:"news",i})),
+    ...orders.map((x,i)=>({...x,type:"order",i})),
+    ...laws.map((x,i)=>({...x,type:"law",i}))
+  ];
+  const target = document.getElementById("manageList");
+  if (target) target.innerHTML = list.map(x =>
+    `<p>${safe(x.title)} — <button class="action" onclick="removeItem('${x.type}',${x.i})">Удалить</button></p>`
+  ).join("");
+}
+function login() {
+  if (document.getElementById("adminPassword").value === "admin123") {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+    renderAll();
+  } else alert("Неверный демонстрационный пароль.");
+}
+function logout() {
+  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("adminPanel").classList.add("hidden");
+  document.getElementById("adminPassword").value = "";
+  renderAll();
+}
+function addItem() {
+  const title = document.getElementById("itemTitle").value.trim();
+  const text = document.getElementById("itemText").value.trim();
+  if (!title || !text) return alert("Заполни заголовок и текст.");
+  const item = {title, text, date:new Date().toLocaleDateString("ru-RU")};
+  (document.getElementById("itemType").value === "news" ? news : orders).push(item);
+  save(); renderAll();
+  document.getElementById("itemTitle").value = "";
+  document.getElementById("itemText").value = "";
+}
+function addLaw() {
+  const title = document.getElementById("lawTitle").value.trim();
+  const text = document.getElementById("lawText").value.trim();
+  const url = document.getElementById("lawUrl").value.trim();
+  if (!title || !text) return alert("Заполни название и текст документа.");
+  if (url && !/^https?:\/\//i.test(url)) return alert("Ссылка должна начинаться с http:// или https://");
+  laws.push({title,text,url});
+  save(); renderAll();
+  document.getElementById("lawTitle").value = "";
+  document.getElementById("lawText").value = "";
+  document.getElementById("lawUrl").value = "";
+}
+function removeItem(type, index) {
+  if (!confirm("Удалить эту запись?")) return;
+  const collection = {law:laws, news, order:orders}[type];
+  collection.splice(index,1);
+  save(); renderAll();
+}
+renderAll();
+</script>
+</body>
+</html>
